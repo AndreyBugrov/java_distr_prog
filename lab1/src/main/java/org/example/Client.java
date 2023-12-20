@@ -12,6 +12,10 @@ public class Client {
             Registry registry = LocateRegistry.getRegistry(host, port);
             GameInterface gameInterface = (GameInterface) registry.lookup(GAME_NAME);
             System.out.println("registry: "+host+":"+port);
+            int player_num = 0;
+            do{
+j2m
+            }while(player_num != 2);
         }catch(Exception e){
             System.err.println("RMIClient exception: " + e.toString());
             e.printStackTrace();

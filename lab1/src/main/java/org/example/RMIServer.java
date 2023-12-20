@@ -12,7 +12,7 @@ public class RMIServer extends UnicastRemoteObject implements Based {
         try{
             RMIServer obj = new RMIServer(); // то же самое
             Registry registry = LocateRegistry.createRegistry(8080);// То же самое
-            registry.bind("HelloServer", obj);
+            registry.bind("HelloServer", obj); // Сверху странные комментарии из далёкого прошлого
             System.out.println("RMIServer ready");
         }catch(Exception e){
             System.err.println("RMIServer exception: " + e.toString());
