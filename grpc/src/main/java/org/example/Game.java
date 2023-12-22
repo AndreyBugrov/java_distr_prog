@@ -1,9 +1,8 @@
 package org.example;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class Game implements GameInterface {
+public class Game implements GameInterface{
     public static final int boardSize = 11;
     final int win_num = 3;
     int players = 0;
@@ -29,11 +28,11 @@ public class Game implements GameInterface {
         return false;
     }
 
-    public boolean win_for_column() {
+    public boolean win_for_column(int player_num) {
         int counter = 0;
         for (int j = 0; j < boardSize; j++) {
             for (int i = 0; i < boardSize; i++) {
-                if (board[i][j] == 1) {
+                if (board_list.get(i*boardSize+j) == 1) {
                     counter++;
                     if (counter == win_num) {
                         return true;
@@ -111,10 +110,10 @@ public class Game implements GameInterface {
 
     public boolean win_check(int player_num) {
         //return win_for_column() || win_for_row() || win_for_main_diags() || win_for_not_main_diags();
-        return win_for_row(player_num);
+        return win_for_row(player_num) || win_for_column(player_num);
     }
 
-    public void first_move() throws RemoteException {
+    public void first_move(){
         for(int i=0;i<boardSize;i++){
             for(int j=0;j<boardSize;j++){
                 board_list.add(0);
@@ -136,10 +135,7 @@ public class Game implements GameInterface {
             System.out.print('\n');
         }
     }
-    public ArrayList<Integer> get_board(int[][] a){
-        for(int i=0;i<boardSize;i++){
-            System.arraycopy(board[i], 0, a[i], 0, boardSize);
-        }
+    public ArrayList<Integer> get_board(){
         return board_list;
     }
     public void get_symbol(String[] a){
@@ -147,7 +143,7 @@ public class Game implements GameInterface {
             a[i]=symbol[i];
         }
     }
-    public int get_turn() throws RemoteException{
+    public int get_turn(){
         return turn;
     }
     //TODO: Input to gameInterface
