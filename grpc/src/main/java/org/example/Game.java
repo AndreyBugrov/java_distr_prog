@@ -125,8 +125,6 @@ public class Game implements GameInterface{
         board_list.set(middle*boardSize+middle, 1);
         turn = 2;
     }
-    //TODO: Implement draw function
-    //TODO: Make drawing for both clients after any change;
     public void draw(){
         for(int i=0;i<boardSize;i++){
             for(int j=0;j<boardSize;j++) {

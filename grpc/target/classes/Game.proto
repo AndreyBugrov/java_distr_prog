@@ -1,0 +1,33 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package grpc;
+option java_multiple_files = true;
+option java_package = "grpc.connect6";
+option java_outer_classname = "Connect6Proto";
+
+message MoveInput{
+  int32 player_num = 1;
+  int32 x = 2;
+  int32 y = 3;
+}
+message WinStatus{
+  bool status = 1;
+}
+message PlayerNum{
+  int32 player_num = 1;
+}
+message Board{
+  repeated int32 board = 1;
+}
+message TurnNum{
+  int32 turn = 1;
+}
+
+service Connect6 {
+  // Метод получает и возвращает сообщение. Каждое из них должно быть описано
+  rpc move(MoveInput) returns(WinStatus);
+  rpc get_board(google.protobuf.Empty) returns(Board);
+  rpc register_player(google.protobuf.Empty) returns(PlayerNum);
+  rpc win_check(PlayerNum) returns(WinStatus);
+  rpc get_turn(google.protobuf.Empty) returns(TurnNum);
+}
